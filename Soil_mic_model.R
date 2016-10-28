@@ -11,7 +11,7 @@ library(deSolve)
 library(ggplot2)
 
 #Laptop
-setwd("C:/Users/Tom/Documents/GitHub/TraceGasLabScripts")
+setwd("C:/Users/Tom/Documents/GitHub/RScriptsLab")
 
 #load data
 Csoil_data<-read.csv("./data.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
