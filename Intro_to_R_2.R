@@ -1,72 +1,72 @@
-###Two pool soil model with non-linear
-###explicit microbial feedback
-###drawn from Wang et al. (2014) yearly
-###version of German et al. (2012) model
+###Intro to R session 2
+###Reading in .csv file
+###Manipulating data frames
+###for loop basics
+###
+###last modified 10/30/16
+###created by Nell Campbell
 
 #clear workspace
 rm(list=ls())
-
-#load needed packages
-library(deSolve)
 
 #Laptop
 setwd("C:/Users/Tom/Documents/GitHub/RScriptsLab")
 
 #load data
-Csoil_data<-read.csv("./data.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+Csoil_data<-read.csv("./Intro_to_R_2_data.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+
+#plot data, 1
+plot(Csoil_data$Year, Csoil_data$Csoil, col="black", pch=18)
+
+#plot data, 2
+#add labels to axes
+plot(Csoil_data$Year, Csoil_data$Csoil, col="black", pch=18,
+     xlab="Year", ylab=expression(paste("Soil Carbon (g C ", m^-2, ")")))
 
 
-#model function
-  Soil_Mic <- function(t, y, parms){
-    #set initial state values
-      Cmic  <-  y[1]
-      Csoil <-  y[2]
-      
-    #set parameter values
-      Input_litter   <-  parms[1] #carbon input (g C m^-2 year^-1)
-      Temp_soil      <-  parms[2] #mean soil temp top 1m (Celcius)
-      U              <-  parms[3] #turnover rate of microbial biomass (year^-1)
-      Eps            <-  parms[4] #microbial growth efficency
-    
-    #calculated values
-      #maximum rate of soil C assimilation per unit microbial biomass per year (g C m^-2)
-        V   <-  (8*(10^-6)*exp(5.47+(0.063*Temp_soil))*(24*365))*8 
-      #half-saturation constant for soil C assimilation by microbial biomass (g C m^-2)
-        K   <-  (10*exp(3.19+(0.007*Temp_soil))*1000)*0.2 
 
-    #model equations
-      dCmic   <-  Eps*((Cmic*V*Csoil)/(Csoil+K))-(U*Cmic)
-      dCsoil  <-  Input_litter+(U*Cmic)-((Cmic*V*Csoil)/(Csoil+K))
-      
-      return(list(c(dCmic, dCsoil)))
+####adding colors by island name
+#Create a new column for colors
+Csoil_data$colors <-vector(mode="character", length=nrow(Csoil_data))
+
+#look at top of data frame to see that empty column was added
+head(Csoil_data)
+
+#read in data frame matching island name to colors
+ColorMatch<-read.csv("./Intro_to_R_2_colors.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+
+
+###example for loop
+#create vector for for loop results
+forloop_test<-vector(mode="numeric", length=nrow(Csoil_data))
+forloop_test
+
+for(m in 1:nrow(Csoil_data)){
+  forloop_test[m]=Csoil_data$Year[m]+3
+}
+
+
+####run for loop to match Csoil_data$TreasureIsland with colors in the
+#ColorMatch dataframe. Outer loop (j) steps through each row of Csoil_data
+#while inner loop (k) compares the value in the row to ColorMatch
+#outer loop for fcons table, where j steps through each row
+for(j in 1:nrow(Csoil_data)){
+  
+  #inner loop for stepping through Intro_to_R_2_colors
+  for(k in 1:nrow(ColorMatch)){
+    #is the current value of Csoil_data$TreasureIsland row 'j' 
+    #the same as the ColorMatch$TreasureIsland at location 'k'?
+    if(Csoil_data$TreasureIsland[j]==ColorMatch$TreasureIsland[k]){
+      #set row in Csoil_data$colors to color for that name
+      Csoil_data$colors[j]=ColorMatch$Color[k]
+    } else {
+      print(k)
+    }
   }
-  
-  
-#model setup
-  times <- seq(0,50,1) #annual time step
-  Pars  <- c(Input_litter=350, Temp_soil=15, U=4.38, Eps=0.5)
-    ####Suggested ranges for variation
-      ####Input_litter 50-500, larger values stabilize more quickly
-      ####Temp_soil -5 to 35. Higher temps stabilize more quickly
-      ####U poorly understood rate. This value set based on other studies.
-      ####Eps 0.2 - 0.6. Lower values (less efficient microbial growth) cause longer time to stabilization
-  yini  <- c(Cmic=100, Csoil=1000)
+}
 
-  
-#Run model
-  out<-lsoda(func=Soil_Mic, y=yini, parms=Pars, times=times)
-  
-#plot model outputs
-  plot(out,ylab=expression(paste("Carbon (g C ", m^-2, ")")), xlab="year")
-  
-#change plot to single pane
-  par(mfrow=c(1,1))
-  #plot Csoil model results 
-  plot(out[,1], out[,3], typ="l", 
-       ylab=expression(paste("Carbon (g C ", m^-2, ")")), xlab="year",
-       main="Csoil")
-  #add points to plot for measured data
-  points(Csoil_data[,1], Csoil_data[,2], col="red", pch=18)
-  
-  
-  
+head(Csoil_data)
+
+#plot using colors column
+plot(Csoil_data$Year, Csoil_data$Csoil, col=Csoil_data$colors, pch=18,
+     xlab="Year", ylab=expression(paste("Soil Carbon (g C ", m^-2, ")")))
