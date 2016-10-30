@@ -9,9 +9,6 @@ rm(list=ls())
 #Set working directory
 setwd("C:/Users/Tom/Documents/GitHub/RScriptsLab")
 
-#For intro to Rstudio: load workspace
-#load("C:\\Users\\Tom\\Documents\\GitHub\\RScriptsLab\\.RData")
-
 #Part 1- Introduction to data objects
 
 #####SCALAR

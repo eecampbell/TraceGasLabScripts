@@ -8,7 +8,6 @@ rm(list=ls())
 
 #load needed packages
 library(deSolve)
-library(ggplot2)
 
 #Laptop
 setwd("C:/Users/Tom/Documents/GitHub/RScriptsLab")
