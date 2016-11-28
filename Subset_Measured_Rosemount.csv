@@ -1,0 +1,27 @@
+site,treatment,year,units,stover_meas,grain_meas,abv_bio_meas,SOC_meas,SOC_order
+rosemount,NTs2,1980,Mg C/ha,2.58,,,50.125,1
+rosemount,NTs2,1981,Mg C/ha,3.44,4.343,,,
+rosemount,NTs2,1982,Mg C/ha,2.15,3.569,,,
+rosemount,NTs2,1983,Mg C/ha,2.15,2.58,,,
+rosemount,NTs2,1984,Mg C/ha,2.58,3.569,,,
+rosemount,NTs2,1985,Mg C/ha,2.15,3.225,,,
+rosemount,NTs2,1986,Mg C/ha,3.01,3.268,,,
+rosemount,NTs2,1987,Mg C/ha,1.72,3.526,,,
+rosemount,NTs2,1988,Mg C/ha,0.86,1.247,,,
+rosemount,NTs2,1989,Mg C/ha,2.58,3.44,,,
+rosemount,NTs2,1990,Mg C/ha,3.44,2.709,,,
+rosemount,NTs2,1991,Mg C/ha,1.72,2.193,,,
+rosemount,NTs2,1992,Mg C/ha,1.72,1.204,,58.575,2
+rosemount,NTrr2,1980,Mg C/ha,2.58,,,52.65,1
+rosemount,NTrr2,1981,Mg C/ha,2.58,4.042,,,
+rosemount,NTrr2,1982,Mg C/ha,2.58,2.451,,,
+rosemount,NTrr2,1983,Mg C/ha,1.72,2.193,,,
+rosemount,NTrr2,1984,Mg C/ha,3.44,3.655,,,
+rosemount,NTrr2,1985,Mg C/ha,2.15,3.01,,,
+rosemount,NTrr2,1986,Mg C/ha,1.72,3.612,,,
+rosemount,NTrr2,1987,Mg C/ha,1.29,3.655,,,
+rosemount,NTrr2,1988,Mg C/ha,0.86,0.989,,,
+rosemount,NTrr2,1989,Mg C/ha,3.01,3.053,,,
+rosemount,NTrr2,1990,Mg C/ha,2.58,3.096,,,
+rosemount,NTrr2,1991,Mg C/ha,0.43,1.763,,,
+rosemount,NTrr2,1992,Mg C/ha,0.86,1.247,,48.75,2
